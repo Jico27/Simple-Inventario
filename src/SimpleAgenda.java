@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class SimpleAgenda {
     public static void main(String[] args) {
+        agregarContacto();
 
     }
 
@@ -10,7 +11,7 @@ public class SimpleAgenda {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Ingrese un contacto a agregar");
-        contacto = sc.next();
+        contacto = sc.nextLine();
 
         if (contacto.length() >= 8 && contacto.length() <= 30 ){
             System.out.println("Contacto agregado con éxito.");
