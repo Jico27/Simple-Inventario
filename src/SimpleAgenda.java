@@ -19,8 +19,8 @@ public class SimpleAgenda {
         System.out.println("Ingrese un contacto a agregar.");
         contacto = sc.nextLine();
 
-        for (int i = 0; i < contactos.length; i++) {
-            if (contactos[i] != null && contactos[i].equals(contacto)){
+        for (String s : contactos) {
+            if (s != null && s.equals(contacto)) {
                 existe = true;
                 break;
             }
@@ -30,7 +30,7 @@ public class SimpleAgenda {
             for (int i = 0; i < contactos.length; i++) {
                 if (contactos[i] == null){
                     contactos[i] = contacto;
-                    System.out.println("Contacto de " + contacto + " agregado satisfactorio");
+                    System.out.println("Contacto de " + contacto + " agregado satisfactoriamente");
                     break;
                 }
             }
@@ -46,8 +46,8 @@ public class SimpleAgenda {
         System.out.println("Qué contacto desea eliminar?");
         contacto = sc.nextLine();
 
-        for (int i = 0; i < contactos.length; i++) {
-            if (contactos[i] != null && contactos[i].equals(contacto)){
+        for (String s : contactos) {
+            if (s != null && s.equals(contacto)) {
                 existe = true;
                 break;
             }
@@ -71,9 +71,9 @@ public class SimpleAgenda {
 
     public static void mostrarContactos(){
         System.out.println("Mostrando contactos...");
-        for (int i = 0; i < contactos.length; i++) {
-            if (contactos[i] != null){
-                System.out.println(contactos[i]);
+        for (String contacto : contactos) {
+            if (contacto != null) {
+                System.out.println(contacto);
             }
         }
     }
@@ -86,8 +86,8 @@ public class SimpleAgenda {
         System.out.println("Introducir el contacto a mostrar");
         contacto = sc.nextLine();
 
-        for (int i = 0; i < contactos.length; i++) {
-            if (contactos[i] != null && contactos[i].equals(contacto)){
+        for (String s : contactos) {
+            if (s != null && s.equals(contacto)) {
                 existe = true;
                 break;
             }
