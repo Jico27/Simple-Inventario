@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -5,13 +6,14 @@ import java.io.File;
 
 public class SimpleAgenda {
     public static String[] contactos = new String [10];
+    public static File archivoAgenda = new File("contactos.txt");
 
     public static void main(String[] args) throws IOException {
         contactos[0] = "Pepe";
         contactos[1] = "Juan";
         contactos[2] = "Pablo";
 
-        generarArchivo();
+        mostrarContactos();
 
     }
 
@@ -72,38 +74,40 @@ public class SimpleAgenda {
 
     }
 
-    public static void mostrarContactos(){
+    public static void mostrarContactos() throws FileNotFoundException {
+        Scanner sc = new Scanner(archivoAgenda);
         System.out.println("Mostrando contactos...");
-        for (String contacto : contactos) {
-            if (contacto != null) {
-                System.out.println(contacto);
-            }
+        while (sc.hasNextLine()){
+            String linea = sc.nextLine();
+            if (!linea.startsWith("contacto")) System.out.println(linea);
         }
+
     }
 
-    public static void mostrarContacto(){
+    public static void mostrarContacto() throws FileNotFoundException {
         String contacto;
         boolean existe = false;
+        Scanner scArchivo = new Scanner(archivoAgenda);
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Introducir el contacto a mostrar");
+        System.out.println("Ingrese nombre a consultar");
         contacto = sc.nextLine();
 
-        for (String s : contactos) {
-            if (s != null && s.equals(contacto)) {
+        while (scArchivo.hasNextLine()){
+            String linea = scArchivo.nextLine();
+            if (linea.startsWith(contacto)){
                 existe = true;
                 break;
             }
         }
-
         if (existe){
             System.out.println("El contacto " + contacto + " existe");
         }
-        else System.out.println("No existen registros del contacto " + contacto);
+        else System.out.println("No existen registros de este contacto");
 
     }
     public static void generarArchivo () throws IOException {
-        File archivoAgenda = new File("contactos.txt");
+
         archivoAgenda.createNewFile();
         FileWriter writer = new FileWriter(archivoAgenda);
         writer.write("contacto,telefono\n" +
