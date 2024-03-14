@@ -1,14 +1,17 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import java.io.File;
 
 public class SimpleAgenda {
     public static String[] contactos = new String [10];
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         contactos[0] = "Pepe";
         contactos[1] = "Juan";
         contactos[2] = "Pablo";
 
-        agregarContacto();
+        generarArchivo();
 
     }
 
@@ -98,6 +101,21 @@ public class SimpleAgenda {
         }
         else System.out.println("No existen registros del contacto " + contacto);
 
+    }
+    public static void generarArchivo () throws IOException {
+        File archivoAgenda = new File("contactos.txt");
+        archivoAgenda.createNewFile();
+        FileWriter writer = new FileWriter(archivoAgenda);
+        writer.write("contacto,telefono\n" +
+
+                "Adan,8098551212\n" +
+
+                "Enmanuel,8294118787\n" +
+
+                "Raider,8097410032\n" +
+
+                "Roger,8095554141\n" );
+        writer.close();
     }
 }
 
